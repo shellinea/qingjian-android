@@ -12,7 +12,7 @@ members = [
     "crates/qingjian-neural",
     "crates/qingjian-render",
     "crates/qingjian-update",
-    "apps/linux/server", "apps/cli", "apps/macos", "apps/windows/server", "apps/windows/tsf", "apps/windows/settings", "tools/dict-convert", "tools/gloss-gen", "tools/release-sign",
+    "apps/linux/server", "apps/cli", "apps/macos", "apps/android/crate", "apps/windows/server", "apps/windows/tsf", "apps/windows/settings", "tools/dict-convert", "tools/gloss-gen", "tools/release-sign",
 ]
 
 [workspace.package]
@@ -65,8 +65,12 @@ candle-core = "0.11.0"
 candle-nn = "0.11.0"
 
 # 云联想：OpenAI 兼容接口客户端与它需要的异步运行时
-async-openai = { version = "0.42.0", default-features = false, features = ["chat-completion", "native-tls", "byot"] }
+# TLS 后端不在这里定：workspace 的 features 对成员是叠加的，写死 native-tls 后成员无法按目标抵消。
+# 各 consumer 用 [target.'cfg(...)'.dependencies] 选：Windows/macOS → native-tls，其余目标（Android 等）→ rustls。
+async-openai = { version = "0.42.0", default-features = false, features = ["chat-completion", "byot"] }
 reqwest = { version = "0.13", default-features = false }
+# Android 壳的 JNI 绑定。版本与 rustls-platform-verifier 带入的 jni 对齐，避免 lock 里两份共存
+jni = "0.22"
 uuid = { version = "1.26", features = ["v4"] }
 tokio = { version = "1.53.1", features = ["rt", "time"] }
 

@@ -16,6 +16,13 @@ ed25519-dalek.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true
-reqwest = { workspace = true, features = ["native-tls", "system-proxy"] }
 tokio.workspace = true
 tracing.workspace = true
+
+# TLS 后端按目标选：桌面保持 native-tls，其余目标走 rustls（Android 上没有 OpenSSL）。
+# system-proxy 在 reqwest 0.13 属于 default，这里 default-features = false 已关掉，必须显式保留。
+[target.'cfg(any(target_os = "windows", target_os = "macos"))'.dependencies]
+reqwest = { workspace = true, features = ["native-tls", "system-proxy"] }
+
+[target.'cfg(not(any(target_os = "windows", target_os = "macos")))'.dependencies]
+reqwest = { workspace = true, features = ["rustls", "system-proxy"] }

@@ -7,7 +7,6 @@ license.workspace = true
 repository.workspace = true
 
 [dependencies]
-async-openai.workspace = true
 clap.workspace = true
 dotenvy.workspace = true
 qingjian-core.workspace = true
@@ -20,3 +19,10 @@ tracing-subscriber.workspace = true
 
 [lints]
 workspace = true
+
+# TLS 后端按目标选：桌面保持 native-tls，其余目标走 rustls。
+[target.'cfg(any(target_os = "windows", target_os = "macos"))'.dependencies]
+async-openai = { workspace = true, features = ["native-tls"] }
+
+[target.'cfg(not(any(target_os = "windows", target_os = "macos")))'.dependencies]
+async-openai = { workspace = true, features = ["rustls"] }

@@ -3,6 +3,8 @@
 //! 文件走 fontdb 的 mmap 加载，只解析名字表与 cmap，Apple Color Emoji 那种 190 MB 的文件也只在用到字形时才读页。
 //! 中日同形字按 locale 回退（cosmic-text 的平台回退表：zh-CN → PingFang SC，ja → Hiragino Sans）。
 
+#[cfg(target_os = "android")]
+mod android;
 #[cfg(target_os = "windows")]
 pub mod directwrite;
 #[cfg(target_os = "linux")]
@@ -24,6 +26,8 @@ use crate::error::RenderError;
 pub(crate) use trak::Trak;
 pub use ui_font::UiFont;
 
+#[cfg(target_os = "android")]
+use android as platform;
 #[cfg(target_os = "windows")]
 use self::windows as platform;
 #[cfg(target_os = "linux")]
