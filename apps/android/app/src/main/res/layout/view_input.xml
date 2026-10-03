@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#F0F0F0"
+    android:minHeight="200dp">
+
+    <HorizontalScrollView
+        android:id="@+id/candidates_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/candidates"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical" />
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC" />
+
+    <!-- 键盘由代码生成：26 个字母 + 退格 + 空格 + 回车 -->
+    <!-- 宽必须是 match_parent：代码里按钮用 weight 布局，父容器 wrap_content 时 0 宽子 View 会塌成 0 像素 -->
+    <LinearLayout
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp" />
+
+</LinearLayout>

@@ -101,7 +101,7 @@ fn deserialize_phrases<'de, D: serde::Deserializer<'de>>(
 
 /// 模板的 `[apps]` 一节（Linux）：应用按 fcitx5 认到的名字（X11 是 WM_CLASS，Wayland 是 app_id）。
 /// 名单要与 [`DEFAULT_ENGLISH_CANDIDATES_OFF`] 一致，测试 `template_parses_to_defaults` 会核对。
-#[cfg(not(any(windows, target_os = "macos")))]
+#[cfg(not(any(windows, target_os = "macos", target_os = "android")))]
 macro_rules! template_apps {
     () => {
         r#"[apps]
@@ -128,6 +128,21 @@ english_candidates_off = [
   "com.apple.Terminal", "com.googlecode.iterm2", "dev.warp.Warp-Stable", "com.mitchellh.ghostty", "io.alacritty", "net.kovidgoyal.kitty",
   "com.microsoft.VSCode", "com.todesktop.230313mzl4w4u92", "dev.zed.Zed", "com.jetbrains.*", "org.vim.MacVim", "com.sublimetext.*",
   "com.apple.dt.Xcode", "com.neovide.neovide",
+]
+"#
+    };
+}
+
+/// 模板的 `[apps]` 一节（Android）：应用按包名认。名单要与 [`DEFAULT_ENGLISH_CANDIDATES_OFF`] 一致，
+/// 测试 `template_parses_to_defaults` 会核对。
+#[cfg(target_os = "android")]
+macro_rules! template_apps {
+    () => {
+        r#"[apps]
+# 按应用改行为，条目是应用的包名（`*` 结尾按前缀匹配）
+# 英文模式（Caps Lock）下不给候选的应用：终端与远程终端里候选窗口会挡住应用自己的快捷键，代码编辑器同理。设成 [] 就处处都给
+english_candidates_off = [
+  "com.termux", "org.connectbot", "com.sonelli.juicessh", "com.microsoft.rdc.androidx",
 ]
 "#
     };

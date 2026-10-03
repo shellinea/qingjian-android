@@ -76,6 +76,17 @@ pub const DEFAULT_ENGLISH_CANDIDATES_OFF_LINUX: &[&str] = &[
     "neovide",
 ];
 
+/// 缺省不给英文候选的应用（Android，按包名）。终端与远程终端里候选窗口会挡住应用自己的快捷键，
+/// 代码编辑器同理；Android 上包名是应用唯一稳定的标识。
+/// 非 Android 目标下只有测试引用它，`cargo check` 不编译测试所以判 unused，显式放行。
+#[allow(dead_code)]
+pub const DEFAULT_ENGLISH_CANDIDATES_OFF_ANDROID: &[&str] = &[
+    "com.termux",
+    "org.connectbot",
+    "com.sonelli.juicessh",
+    "com.microsoft.rdc.androidx",
+];
+
 /// 本平台的缺省名单：macOS 上是 bundle identifier，Windows 上是 exe 文件名，Linux 上是 fcitx5 的 program 名。
 #[cfg(windows)]
 pub const DEFAULT_ENGLISH_CANDIDATES_OFF: &[&str] = DEFAULT_ENGLISH_CANDIDATES_OFF_WINDOWS;
@@ -85,8 +96,12 @@ pub const DEFAULT_ENGLISH_CANDIDATES_OFF: &[&str] = DEFAULT_ENGLISH_CANDIDATES_O
 pub const DEFAULT_ENGLISH_CANDIDATES_OFF: &[&str] = DEFAULT_ENGLISH_CANDIDATES_OFF_MACOS;
 
 /// 本平台的缺省名单：macOS 上是 bundle identifier，Windows 上是 exe 文件名，Linux 上是 fcitx5 的 program 名。
-#[cfg(not(any(windows, target_os = "macos")))]
+#[cfg(not(any(windows, target_os = "macos", target_os = "android")))]
 pub const DEFAULT_ENGLISH_CANDIDATES_OFF: &[&str] = DEFAULT_ENGLISH_CANDIDATES_OFF_LINUX;
+
+/// 本平台的缺省名单：Android 上是应用的包名。
+#[cfg(target_os = "android")]
+pub const DEFAULT_ENGLISH_CANDIDATES_OFF: &[&str] = DEFAULT_ENGLISH_CANDIDATES_OFF_ANDROID;
 
 /// 配置文件 `[apps]` 分节：按应用改行为。应用的标识 macOS 上是 bundle identifier，Windows 上是宿主进程的 exe 文件名。
 ///
@@ -180,6 +195,16 @@ mod tests {
     }
 
     #[test]
+    fn android_list_matches_package_names_case_insensitively() {
+        let apps = AppsConfig::with_english_candidates_off(DEFAULT_ENGLISH_CANDIDATES_OFF_ANDROID);
+        assert!(apps.english_candidates_off("com.termux"));
+        assert!(apps.english_candidates_off("COM.Termux"), "匹配大小写不敏感");
+        assert!(apps.english_candidates_off("com.sonelli.juicessh"));
+        assert!(!apps.english_candidates_off("com.android.settings"));
+        assert!(!apps.english_candidates_off("com.miui.home"));
+    }
+
+    #[test]
     fn default_list_follows_the_platform() {
         let apps = AppsConfig::default();
         assert_eq!(
@@ -194,8 +219,13 @@ mod tests {
         );
         assert_eq!(
             apps.english_candidates_off("konsole"),
-            cfg!(not(any(windows, target_os = "macos"))),
+            cfg!(not(any(windows, target_os = "macos", target_os = "android"))),
             "Linux 缺省名单按 fcitx5 的 program 名"
+        );
+        assert_eq!(
+            apps.english_candidates_off("com.termux"),
+            cfg!(target_os = "android"),
+            "Android 缺省名单按包名"
         );
     }
 
