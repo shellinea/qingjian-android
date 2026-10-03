@@ -130,7 +130,7 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_urlencoded",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tokio",
  "tokio-stream",
  "tokio-util",
@@ -324,7 +324,7 @@ dependencies = [
  "rand_distr",
  "rayon",
  "safetensors 0.8.0",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tokenizers",
  "yoke 0.8.3",
  "zerocopy",
@@ -343,7 +343,7 @@ dependencies = [
  "objc2-foundation",
  "objc2-metal",
  "once_cell",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
 ]
 
@@ -363,7 +363,7 @@ dependencies = [
  "rayon",
  "safetensors 0.8.0",
  "serde",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
 ]
 
 [[package]]
@@ -735,7 +735,7 @@ version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "10d60334b3b2e7c9d91ef8150abfb6fa4c1c39ebbcf4a81c2e346aad939fee3e"
 dependencies = [
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
 ]
 
 [[package]]
@@ -960,7 +960,7 @@ dependencies = [
  "serde",
  "serde_json",
  "tempfile",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
 ]
 
 [[package]]
@@ -1877,7 +1877,7 @@ dependencies = [
  "jni-sys",
  "log",
  "simd_cesu8",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "walkdir",
  "windows-link 0.2.1",
 ]
@@ -2780,6 +2780,7 @@ dependencies = [
  "serde",
  "serde_json",
  "tracing",
+ "tracing-subscriber",
 ]
 
 [[package]]
@@ -2798,7 +2799,7 @@ dependencies = [
  "qingjian-translate",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
  "tracing-appender",
  "tracing-subscriber",
@@ -2813,7 +2814,7 @@ dependencies = [
  "jiff",
  "qingjian-dictionary",
  "serde",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "toml",
  "tracing",
 ]
@@ -2832,7 +2833,7 @@ dependencies = [
  "qingjian-translate",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
  "tracing-subscriber",
 ]
@@ -2842,7 +2843,7 @@ name = "qingjian-dictionary"
 version = "0.1.1"
 dependencies = [
  "qingjian-format",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
  "zerocopy",
 ]
@@ -2853,7 +2854,7 @@ version = "0.1.1"
 dependencies = [
  "memmap2",
  "serde",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "toml",
  "tracing",
  "zerocopy",
@@ -2869,7 +2870,7 @@ dependencies = [
  "qingjian-core",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tokio",
  "tracing",
  "tracing-subscriber",
@@ -2886,7 +2887,7 @@ dependencies = [
  "qingjian-translate",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
 ]
 
@@ -2904,7 +2905,7 @@ dependencies = [
  "qingjian-translate",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
  "tracing-appender",
  "tracing-subscriber",
@@ -2916,7 +2917,7 @@ version = "0.1.1"
 dependencies = [
  "qingjian-core",
  "qingjian-format",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
  "zerocopy",
 ]
@@ -2944,7 +2945,7 @@ dependencies = [
  "qingjian-render",
  "qingjian-translate",
  "qingjian-update",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "toml_edit",
  "tracing",
  "tracing-appender",
@@ -2961,7 +2962,7 @@ dependencies = [
  "qingjian-format",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
 ]
 
@@ -2974,7 +2975,7 @@ dependencies = [
  "qingjian-predict",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "toml",
  "toml_edit",
  "tracing",
@@ -2989,7 +2990,7 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tokio",
  "tracing",
  "uuid",
@@ -3003,7 +3004,7 @@ dependencies = [
  "clap",
  "ed25519-dalek",
  "qingjian-update",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
 ]
 
 [[package]]
@@ -3012,7 +3013,7 @@ version = "0.1.1"
 dependencies = [
  "clap",
  "cosmic-text",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tiny-skia",
  "tracing",
  "tracing-subscriber",
@@ -3025,7 +3026,7 @@ version = "0.1.1"
 dependencies = [
  "qingjian-core",
  "qingjian-format",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tracing",
  "zerocopy",
 ]
@@ -3040,7 +3041,7 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tokio",
  "tracing",
 ]
@@ -3061,7 +3062,7 @@ dependencies = [
  "qingjian-render",
  "qingjian-translate",
  "qingjian-update",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "toml_edit",
  "tracing",
  "tracing-appender",
@@ -3099,7 +3100,7 @@ dependencies = [
  "qingjian-core",
  "qingjian-platform",
  "qingjian-windows-server",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "windows",
  "windows-core 0.62.2",
  "windows-registry",
@@ -3137,7 +3138,7 @@ dependencies = [
  "rustc-hash",
  "rustls",
  "socket2",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tokio",
  "tracing",
  "web-time",
@@ -3160,7 +3161,7 @@ dependencies = [
  "rustls",
  "rustls-pki-types",
  "slab",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "tinyvec",
  "tracing",
  "web-time",
@@ -4072,11 +4073,11 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "2.0.20"
+version = "2.0.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ec86235f5fcc2a73650310756d2ac5b138a5780bbbdfae3eeccec992c435ba4f"
+checksum = "09e52cb86a36cede5cb101bf8908837b3e4c6e5e59fe7fd85c23fb56200d189e"
 dependencies = [
- "thiserror-impl 2.0.20",
+ "thiserror-impl 2.0.21",
 ]
 
 [[package]]
@@ -4092,9 +4093,9 @@ dependencies = [
 
 [[package]]
 name = "thiserror-impl"
-version = "2.0.20"
+version = "2.0.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bc04cd3e1236dd4a98afca4569f2deb3f120e5422a4023be2cb683f8486292af"
+checksum = "fe5197923287db20a58125f0bc85c062f7f2c892de97b18c356f9efb14b28524"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4218,7 +4219,7 @@ dependencies = [
  "serde",
  "serde_json",
  "spm_precompiled",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "unicode-normalization-alignments",
  "unicode-segmentation",
  "unicode_categories",
@@ -4413,7 +4414,7 @@ checksum = "050686193eb999b4bb3bc2acfa891a13da00f79734704c4b8b4ef1a10b368a3c"
 dependencies = [
  "crossbeam-channel",
  "symlink",
- "thiserror 2.0.20",
+ "thiserror 2.0.21",
  "time",
  "tracing-subscriber",
 ]
